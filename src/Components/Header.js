@@ -5,8 +5,8 @@ import { GiCatapult } from 'react-icons/gi';
 const Header = () => {
    return (
       <header className="header-container">
-         <GiSharpAxe size={120}/> 
-         <h3>Make Your Army</h3>
+         <GiSharpAxe size={120} /> 
+         <h3>Make  Your  Army</h3>
          <GiCatapult size={120}/>
       </header>
    )
