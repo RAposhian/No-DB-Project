@@ -9,6 +9,7 @@
     "express": "^4.17.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "react-icons": "^3.9.0",
     "react-scripts": "3.4.0"
   },
   "scripts": {
@@ -33,7 +34,7 @@
     ]
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": "index.js",
+  "main": "/server/index.js",
   "devDependencies": {},
   "keywords": [],
   "author": "",
