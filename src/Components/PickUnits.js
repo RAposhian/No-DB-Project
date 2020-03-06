@@ -6,8 +6,9 @@ export default class PickUnits extends Component {
       super(props);
 
       this.state = {
-         listOfUnits: [], // need to set this equal to the list data from a get request of units data list
-         userInput: ''
+         listOfUnits: [], 
+         userInput: '',
+         selectedUnit: []
       }
    }
    
@@ -18,13 +19,29 @@ export default class PickUnits extends Component {
       })
       .catch(err => console.log(err))
    }
+
+   handleAdd = () => {
+      let copyObj = this.state.selectedUnit;
+      copyObj.quantity = +this.state.userInput
+      this.setState({selectUnit: {...copyObj}});
+      this.props.selectUnit(this.state.selectedUnit) 
+      this.setState({selectUnit: [],
+      userInput: ''
+      })
+   }
+
+   handleChange = (event) => {
+      let unitObj = this.state.listOfUnits.find(e => e.id === +event.target.value);
+      this.setState({selectedUnit: unitObj})
+   }
    
    render(){
-   let listData = this.state.listOfUnits.map((e, i)=> <option key={i}>{e.name}</option>)
+      let totalCost = this.props.costTotal.reduce((a,c) => (a += c.cost)*c.quantity, 0)
+      let listData = this.state.listOfUnits.map((e, i)=> <option key={i} value={e.id}>{e.name}</option>)
       return (
          // this is the left side bar that is where you select your units.
          <section className="select-unit-container">
-            <select>
+            <select onChange={this.handleChange}>
                <option>Select Unit</option>
                {listData}
             </select>
@@ -34,9 +51,9 @@ export default class PickUnits extends Component {
                onChange={e => this.setState({userInput: e.target.value})}
             />
             <button 
-            //function passed down from App.js to add to the selected army list
+            onClick= {this.handleAdd}
             >Add</button>
-            {/* <span>need to add the total cost at the bottom here.</span> */}
+            <span>{totalCost}</span>
          </section>
       )
    }

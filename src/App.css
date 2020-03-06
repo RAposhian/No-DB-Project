@@ -2,7 +2,7 @@
    display: flex;
    justify-content: space-between;
    align-items: center;
-   background-image: url("./wood-background.jpg");
+   background-image: url("./assets/wood-background.jpg");
    height: 150px;
 }
 
@@ -12,4 +12,19 @@
    font-family: fantasy;
    letter-spacing: 5px;
    color: rgb(146, 142, 142);
+}
+
+.army-box {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+   width: 200px;
+   height: 200px;
+   border: 2px solid black;
+}
+
+.army-container {
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
 }
