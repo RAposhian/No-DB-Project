@@ -8,7 +8,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      
+      currentArmy: []
     }
   }
 
@@ -16,7 +16,7 @@ class App extends Component {
     return (
       <div className='App'>
         <Header />
-        This is the App component!
+        
       </div>
     )
   }
