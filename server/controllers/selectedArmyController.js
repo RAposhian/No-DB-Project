@@ -1,4 +1,4 @@
-
+selectedArmy = [];
 
 module.exports = {
    
