@@ -1,4 +1,15 @@
 import React, { Component } from 'react'
+import archer from '../assets/archer.jpg'
+import catapult from '../assets/catapult.jpg'
+import crossbow from '../assets/crossbow.jpg'
+import jon from '../assets/IMG_E0947[1] (2).JPG'
+import knight from '../assets/knight.jpg'
+import scout from '../assets/scout.jpg'
+import spearman from '../assets/spear-man.jpg'
+import swordsman from '../assets/swordsman.jpg'
+import trebuchet from '../assets/trebuchet.jpg'
+import peasant from '../assets/Troop_Peasant.png'
+
 
  export default class Army extends Component {
    constructor(props){
@@ -21,22 +32,56 @@ import React, { Component } from 'react'
    }
 
    render() {
-     const {unitData} = this.props
+      const {unitData} = this.props
+      let image;
+      if (unitData.image === 'spearman') {
+         image = spearman
+      }
+      if (unitData.image === 'swordsman') {
+         image = swordsman
+      }
+      if (unitData.image === 'archer') {
+         image = archer
+      }
+      if (unitData.image === 'knight') {
+         image = knight
+      }
+      if (unitData.image === 'catapult') {
+         image = catapult
+      }
+      if (unitData.image === 'crossbow') {
+         image = crossbow
+      }
+      if (unitData.image === 'peasant') {
+         image = peasant
+      }
+      if (unitData.image === 'jon') {
+         image = jon
+      }
+      if (unitData.image === 'trebuchet') {
+         image = trebuchet
+      }
+      if (unitData.image === 'scout') {
+         image = scout
+      }
+     
+     console.log(unitData.image)
       return (
          <div className='army-box'>
             <h2>{unitData.name}</h2>
-            <img src={unitData.image} alt={unitData.name}/>
+            <img  className='unit-img' src={image} alt={unitData.name}/>
             {this.state.editToggle
             ?
             <div>
                <input 
                   type='number' 
+                  defaultValue={unitData.quantity}
                   onChange={e => this.setState({userInput: e.target.value})}
                   />
                <button onClick={()=> this.handleUpdate(unitData.id)}>Update</button>
             </div>
             :
-            <span>{unitData.quantity}</span>
+            <span>Quantity: {unitData.quantity}</span>
             }
             <div className ='button-bar'>
                <button onClick={this.toggleEdit}>Edit</button>

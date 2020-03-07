@@ -57,7 +57,7 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.currentArmy)
+    // console.log(this.state.currentArmy)
     return (
       <div className='App'>
         

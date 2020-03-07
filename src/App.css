@@ -18,9 +18,12 @@
    display: flex;
    flex-direction: column;
    justify-content: space-around;
-   width: 200px;
-   height: 200px;
-   border: 2px solid black;
+   align-items: center;
+   width: 500px;
+   height: 500px;
+   background-image: url('./assets/tent.png');
+   background-position: center;
+   background-repeat: no-repeat;
 }
 
 .army-container {
@@ -28,6 +31,10 @@
    align-items: center;
    justify-content: space-around;
    flex-wrap: wrap;
+   background-color: gray;
+   height: 84.26vh;
+   background-image: url("./assets/grasshill.jpg");
+   background-position: bottom;
 }
 
 .select-unit-container {
@@ -37,6 +44,13 @@
    display: flex;
    flex-direction: column;
    align-items: center;
+   font-size: 30px;
+   color: white;
    padding: 20px;
-   background-color: darkgray;
+   background-image: url("./assets/rock.jpg");
+}
+
+.unit-img {
+   width: 175px;
+   height: 175px;
 }
