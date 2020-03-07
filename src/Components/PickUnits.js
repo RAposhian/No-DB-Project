@@ -30,7 +30,7 @@ export default class PickUnits extends Component {
 
          copyObj.quantity = +this.state.userInput
       } else {
-         return toast.warn('Select a unit and Quantity')
+         return toast.error('Select a unit and Quantity')
       }
       this.setState({selectUnit: {...copyObj}});
       this.props.selectUnit(this.state.selectedUnit) 
@@ -52,7 +52,7 @@ export default class PickUnits extends Component {
          <section className="select-unit-container">
             
             <h2>Pick Units Here:</h2>
-            <select onChange={this.handleChange}>
+            <select onChange={this.handleChange} className='unit-selector'>
                <option>Select Unit</option>
                {listData}
             </select>
@@ -64,7 +64,7 @@ export default class PickUnits extends Component {
             <button 
             onClick= {this.handleAdd}
             >Add</button>
-            <h2>Army total Cost: <br/> {totalCost}</h2>
+            <h2 id='total-output'>Army total Cost: <br/> {totalCost} gold</h2>
          </section>
       )
    }
