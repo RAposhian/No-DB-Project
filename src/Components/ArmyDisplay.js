@@ -9,6 +9,8 @@ const ArmyDisplay = (props) => {
           <Army 
             key={i} 
             unitData={e}
+            deleteUnit={props.deleteUnit}
+            updateQuantity = {props.updateQuantity}
           />)
          }) 
       }

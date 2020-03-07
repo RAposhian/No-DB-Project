@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.min.css' 
+
 
 export default class PickUnits extends Component {
    constructor(props) {
@@ -8,10 +11,11 @@ export default class PickUnits extends Component {
       this.state = {
          listOfUnits: [], 
          userInput: '',
-         selectedUnit: []
+         selectedUnit: null
       }
    }
    
+
    componentDidMount(){
       axios.get('/api/army')
       .then(res => {
@@ -22,7 +26,12 @@ export default class PickUnits extends Component {
 
    handleAdd = () => {
       let copyObj = this.state.selectedUnit;
-      copyObj.quantity = +this.state.userInput
+      if(copyObj){
+
+         copyObj.quantity = +this.state.userInput
+      } else {
+         return toast.warn('Select a unit and Quantity')
+      }
       this.setState({selectUnit: {...copyObj}});
       this.props.selectUnit(this.state.selectedUnit) 
       this.setState({selectUnit: [],
@@ -41,6 +50,8 @@ export default class PickUnits extends Component {
       return (
          // this is the left side bar that is where you select your units.
          <section className="select-unit-container">
+            
+            <h2>Pick Units Here:</h2>
             <select onChange={this.handleChange}>
                <option>Select Unit</option>
                {listData}
@@ -53,7 +64,7 @@ export default class PickUnits extends Component {
             <button 
             onClick= {this.handleAdd}
             >Add</button>
-            <span>{totalCost}</span>
+            <h2>Army total Cost: <br/> {totalCost}</h2>
          </section>
       )
    }

@@ -5,6 +5,9 @@ import Header from './Components/Header'
 import PickUnits from './Components/PickUnits'
 import axios from 'axios'
 import ArmyDisplay from './Components/ArmyDisplay';
+import {ToastContainer} from 'react-toastify'
+
+
 
 class App extends Component {
   constructor(props){
@@ -24,11 +27,12 @@ class App extends Component {
   }
 
   selectUnit = (unit) => {
-    axios.post('/api/selected-army', {unit})
-    .then(res => {
-      this.setState({currentArmy: res.data})
-    })
-    .catch(err => console.log(err))
+      axios.post('/api/selected-army', {unit})
+      .then(res => {
+        this.setState({currentArmy: res.data})
+      })
+      .catch(err => console.log(err))
+    
   }
 
   deleteUnit = (id) => {
@@ -51,14 +55,18 @@ class App extends Component {
     console.log(this.state.currentArmy)
     return (
       <div className='App'>
+        
         <Header />
         <PickUnits 
           costTotal = {this.state.currentArmy}
           selectUnit = {this.selectUnit}
-        />
+          />
         <ArmyDisplay 
+        updateQuantity = {this.updateQuantity}
         currentArmy={this.state.currentArmy}
+        deleteUnit={this.deleteUnit}
         />
+        <ToastContainer />
       </div>
     )
   }
