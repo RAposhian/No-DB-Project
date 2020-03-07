@@ -5,7 +5,8 @@ import Header from './Components/Header'
 import PickUnits from './Components/PickUnits'
 import axios from 'axios'
 import ArmyDisplay from './Components/ArmyDisplay';
-import {ToastContainer} from 'react-toastify'
+import {ToastContainer, toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.min.css' 
 
 
 
@@ -27,12 +28,16 @@ class App extends Component {
   }
 
   selectUnit = (unit) => {
+    let checkUnit = this.state.currentArmy.findIndex(e => e.name === unit.name);  
+    if (checkUnit === -1) {
       axios.post('/api/selected-army', {unit})
       .then(res => {
         this.setState({currentArmy: res.data})
       })
       .catch(err => console.log(err))
-    
+    } else {
+      return toast.error('Duplicate detected')
+    }
   }
 
   deleteUnit = (id) => {

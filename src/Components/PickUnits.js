@@ -34,7 +34,7 @@ export default class PickUnits extends Component {
       }
       this.setState({selectUnit: {...copyObj}});
       this.props.selectUnit(this.state.selectedUnit) 
-      this.setState({selectUnit: [],
+      this.setState({selectUnit: null,
       userInput: ''
       })
    }
