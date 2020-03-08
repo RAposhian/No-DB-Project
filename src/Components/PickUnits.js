@@ -57,7 +57,7 @@ export default class PickUnits extends Component {
       }, 0)
       let listData = this.state.listOfUnits.map((e, i)=> <option key={i} value={e.id}>{e.name}</option>)
       return (
-         // this is the left side bar that is where you select your units.
+         // this is the bar that is where you select your units.
          <section className="select-unit-container">
             <div className='pick-unit-box'>
                <h2>Pick Units Here:</h2>

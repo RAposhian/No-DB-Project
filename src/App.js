@@ -8,6 +8,8 @@ import ArmyDisplay from './Components/ArmyDisplay';
 import {ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css' 
 import Footer from './Components/Footer'
+import PickShips from './Components/PickShips'
+import ShipDisplay from './Components/ShipDisplay'
 
 
 
@@ -17,7 +19,9 @@ class App extends Component {
 
     this.state = {
       currentArmy: [],
-      rollOut: 'army-box'
+      rollOut: 'army-box',
+      currentNavy: [],
+      toggleDisplay: 'Army'
     }
   }
 
@@ -26,6 +30,10 @@ class App extends Component {
     .then(res => {
       this.setState({currentArmy: res.data})
     })
+    .catch(err => console.log(err))
+
+    axios.get(`/api/selected-navy`)
+    .then(res => this.setState({currentNavy: res.data}))
     .catch(err => console.log(err))
   }
 
@@ -70,23 +78,47 @@ class App extends Component {
     }
   }
 
+  toggleDisplayNavy = () => {
+    this.setState({toggleDisplay: 'Navy'})
+  }
+
+  toggleDisplayArmy = () => {
+    this.setState({toggleDisplay: 'Army'})
+  }
+
   render() {
     // console.log(this.state.currentArmy)
     return (
       <div className='App'>
         
-        <Header />
+        <Header 
+          displayNavy = {this.toggleDisplayNavy}
+          displayArmy = {this.toggleDisplayArmy}
+        />
         <div className='body-container'>
-          <PickUnits 
-            costTotal = {this.state.currentArmy}
-            selectUnit = {this.selectUnit}
-            />
-          <ArmyDisplay 
-          rollOut= {this.state.rollOut}
-          updateQuantity = {this.updateQuantity}
-          currentArmy={this.state.currentArmy}
-          deleteUnit={this.deleteUnit}
-          />
+          {
+          (this.state.toggleDisplay === 'Army') ?
+            (
+            <>
+              <PickUnits 
+                costTotal = {this.state.currentArmy}
+                selectUnit = {this.selectUnit}
+                />
+              <ArmyDisplay 
+              rollOut = {this.state.rollOut}
+              updateQuantity = {this.updateQuantity}
+              currentArmy = {this.state.currentArmy}
+              deleteUnit = {this.deleteUnit}
+              />
+            </>
+            )
+            :
+            <>
+              <PickShips />
+              <ShipDisplay />
+            </>
+          }
+          
         </div>
         <Footer rollOut={this.rollOut}/>
         <ToastContainer />
