@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css' 
+import { GiCrossedSwords } from 'react-icons/gi';
+import { GiTwoCoins } from 'react-icons/gi';
+
 
 
 export default class PickUnits extends Component {
@@ -45,26 +48,35 @@ export default class PickUnits extends Component {
    }
    
    render(){
-      let totalCost = this.props.costTotal.reduce((a,c) => (a += c.cost)*c.quantity, 0)
+      let totalCost = this.props.costTotal.reduce((a, c) => {
+         a += c.cost * c.quantity
+         return a;
+      }, 0)
       let listData = this.state.listOfUnits.map((e, i)=> <option key={i} value={e.id}>{e.name}</option>)
       return (
          // this is the left side bar that is where you select your units.
          <section className="select-unit-container">
-            
-            <h2>Pick Units Here:</h2>
-            <select onChange={this.handleChange} className='unit-selector'>
-               <option>Select Unit</option>
-               {listData}
-            </select>
-            <input 
-               type="number"  
-               value={this.state.userInput} 
-               onChange={e => this.setState({userInput: e.target.value})}
-            />
-            <button 
-            onClick= {this.handleAdd}
-            >Add</button>
-            <h2 id='total-output'>Army total Cost: <br/> {totalCost} gold</h2>
+            <div className='pick-unit-box'>
+               <h2>Pick Units Here:</h2>
+              
+               <select onChange={this.handleChange} className='unit-selector'>
+                  <option>Select Unit</option>
+                  {listData}
+               </select>
+               <input 
+                  className='quantity-input'
+                  type="number"  
+                  value={this.state.userInput} 
+                  onChange={e => this.setState({userInput: e.target.value})}
+                  />
+               <GiCrossedSwords 
+               size={60}
+               className ='select-button'
+               onClick= {this.handleAdd}
+               />
+            </div>
+            <h2 id='total-output'>Army total Cost: <br/> {totalCost}</h2>
+            <GiTwoCoins className='gold-coins' size={50} color={'gold'}/>
          </section>
       )
    }

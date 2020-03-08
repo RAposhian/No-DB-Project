@@ -7,6 +7,7 @@ import axios from 'axios'
 import ArmyDisplay from './Components/ArmyDisplay';
 import {ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css' 
+import Footer from './Components/Footer'
 
 
 
@@ -15,7 +16,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-      currentArmy: []
+      currentArmy: [],
+      rollOut: 'army-box'
     }
   }
 
@@ -56,21 +58,34 @@ class App extends Component {
     .catch(err => console.log(err))
   }
 
+  rollOut = () => {
+    if(this.state.rollOut === 'army-box') {
+      return this.setState({rollOut: 'roll-out'})
+    }
+    if (this.state.rollOut === 'roll-out') {
+      this.setState({rollOut: 'army-box'})
+    }
+  }
+
   render() {
     // console.log(this.state.currentArmy)
     return (
       <div className='App'>
         
         <Header />
-        <PickUnits 
-          costTotal = {this.state.currentArmy}
-          selectUnit = {this.selectUnit}
+        <div className='body-container'>
+          <PickUnits 
+            costTotal = {this.state.currentArmy}
+            selectUnit = {this.selectUnit}
+            />
+          <ArmyDisplay 
+          rollOut= {this.state.rollOut}
+          updateQuantity = {this.updateQuantity}
+          currentArmy={this.state.currentArmy}
+          deleteUnit={this.deleteUnit}
           />
-        <ArmyDisplay 
-        updateQuantity = {this.updateQuantity}
-        currentArmy={this.state.currentArmy}
-        deleteUnit={this.deleteUnit}
-        />
+        </div>
+        <Footer rollOut={this.rollOut}/>
         <ToastContainer />
       </div>
     )

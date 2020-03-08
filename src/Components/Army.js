@@ -17,7 +17,8 @@ import peasant from '../assets/Troop_Peasant.png'
 
       this.state = {
          editToggle: false,
-         userInput: ''
+         userInput: '',
+         rollOut: 'army-box'
       }
    }
 
@@ -65,9 +66,9 @@ import peasant from '../assets/Troop_Peasant.png'
          image = scout
       }
      
-     console.log(unitData.image)
+     
       return (
-         <div className='army-box'>
+         <div className={this.props.rollOut}>
             <h2>{unitData.name}</h2>
             <img  className='unit-img' src={image} alt={unitData.name}/>
             {this.state.editToggle

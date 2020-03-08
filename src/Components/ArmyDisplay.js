@@ -11,6 +11,7 @@ const ArmyDisplay = (props) => {
             unitData={e}
             deleteUnit={props.deleteUnit}
             updateQuantity = {props.updateQuantity}
+            rollOut = {props.rollOut}
           />)
          }) 
       }
