@@ -30,8 +30,11 @@ export default class PickUnits extends Component {
    handleAdd = () => {
       let copyObj = this.state.selectedUnit;
       if(copyObj){
-
          copyObj.quantity = +this.state.userInput
+         if  (copyObj.name === 'Jon'){
+            copyObj.quantity = 1;
+            toast.warn('There can only be one Jon!')
+         }
       } else {
          return toast.error('Select a unit and Quantity')
       }

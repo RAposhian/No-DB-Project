@@ -51,6 +51,9 @@ class App extends Component {
   }
 
   updateQuantity = (id, newQuantity) => {
+    if (id === 8) {
+      return toast.error("There is only one Jon in this world!")
+    }
     axios.put(`/api/selected-army/${id}`, {quantity: newQuantity})
     .then(res => {
       this.setState({currentArmy: res.data})
