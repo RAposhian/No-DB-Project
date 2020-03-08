@@ -9,6 +9,9 @@ import spearman from '../assets/spear.png'
 import swordsman from '../assets/swordman.png'
 import trebuchet from '../assets/trebuchet.png'
 import peasant from '../assets/Troop_Peasant.png'
+import {FaUserPlus} from 'react-icons/fa'
+import {GiSkullCrossedBones} from 'react-icons/gi'
+import {GiRallyTheTroops} from 'react-icons/gi'
 
 
  export default class Army extends Component {
@@ -79,14 +82,14 @@ import peasant from '../assets/Troop_Peasant.png'
                   defaultValue={unitData.quantity}
                   onChange={e => this.setState({userInput: e.target.value})}
                   />
-               <button onClick={()=> this.handleUpdate(unitData.id)}>Update</button>
+               <GiRallyTheTroops  size={40} onClick={()=> this.handleUpdate(unitData.id)}/>
             </div>
             :
             <span>Quantity: {unitData.quantity}</span>
             }
             <div className ='button-bar'>
-               <button onClick={this.toggleEdit}>Edit</button>
-               <button onClick={()=>this.props.deleteUnit(unitData.id)}>Delete</button>
+               <FaUserPlus  size={40} onClick={this.toggleEdit}/>
+               <GiSkullCrossedBones size={40} onClick={()=>this.props.deleteUnit(unitData.id)}/>
             </div>
             
          </div>

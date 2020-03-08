@@ -36,7 +36,7 @@ export default class PickUnits extends Component {
             toast.warn('There can only be one Jon!')
          }
       } else {
-         return toast.error('Select a unit and Quantity')
+         return toast.error('Select a Unit Type and Quantity')
       }
       this.setState({selectUnit: {...copyObj}});
       this.props.selectUnit(this.state.selectedUnit) 
@@ -78,7 +78,7 @@ export default class PickUnits extends Component {
                onClick= {this.handleAdd}
                />
             </div>
-            <h2 id='total-output'>Army total Cost: <br/> {totalCost}</h2>
+            <h2 id='total-output'>Army total <br/> {totalCost}</h2>
             <GiTwoCoins className='gold-coins' size={50} color={'gold'}/>
          </section>
       )
