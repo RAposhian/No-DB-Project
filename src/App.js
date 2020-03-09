@@ -46,7 +46,18 @@ class App extends Component {
       })
       .catch(err => console.log(err))
     } else {
-      return toast.error('Duplicate detected')
+      return toast.error('Duplicate Detected')
+    }
+  }
+
+  addShip = (ship) => {
+    let checkShip = this.state.currentNavy.findIndex(e => e.name === ship.name);
+    if (checkShip === -1) {
+      axios.post(`/api/selected-navy`, {ship})
+      .then(res => this.setState({currentNavy: res.data}))
+      .catch(err => console.log(err))
+    } else {
+      return toast.error('Duplicate Detected')
     }
   }
 
@@ -58,6 +69,12 @@ class App extends Component {
     .catch(err => console.log(err))
   }
 
+  deleteShip = (id) => {
+    axios.delete(`/api/selected-navy/${id}`)
+    .then(res=> this.setState({currentNavy: res.data}))
+    .catch(err => console.log(err))
+  }
+
   updateQuantity = (id, newQuantity) => {
     if (id === 8) {
       return toast.error("There is only one Jon in this world!")
@@ -66,6 +83,12 @@ class App extends Component {
     .then(res => {
       this.setState({currentArmy: res.data})
     })
+    .catch(err => console.log(err))
+  }
+
+  updateShip = (id, newName, newQuantity) => {
+    axios.put(`/api/selected-navy/${id}`, {name: newName, quantity: newQuantity})
+    .then(res => this.setState({currentNavy: res.data}))
     .catch(err => console.log(err))
   }
 
@@ -87,7 +110,7 @@ class App extends Component {
   }
 
   render() {
-    // console.log(this.state.currentArmy)
+    console.log(this.state.currentNavy)
     return (
       <div className='App'>
         
@@ -110,19 +133,25 @@ class App extends Component {
               currentArmy = {this.state.currentArmy}
               deleteUnit = {this.deleteUnit}
               />
+              <Footer rollOut={this.rollOut}/>
             </>
             )
             :
             <>
               <PickShips 
                 costTotal = {this.state.currentNavy}
+                addShip={this.addShip}
               />
-              <ShipDisplay />
+              <ShipDisplay 
+                deleteShip = {this.deleteShip}
+                updateShip = {this.updateShip}
+                currentNavy = {this.state.currentNavy}
+              />
             </>
           }
           
         </div>
-        <Footer rollOut={this.rollOut}/>
+        
         <ToastContainer />
       </div>
     )

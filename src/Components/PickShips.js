@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import {GiPirateCannon} from 'react-icons/gi'
 import {GiTwoCoins} from 'react-icons/gi'
+import { toast } from 'react-toastify';
 
 class PickShips extends Component {
    constructor(props){
@@ -21,16 +22,33 @@ class PickShips extends Component {
    }
 
 
-   
+   handleAdd = () => {
+      let copyObj = this.state.selectedShip;
+      if (copyObj) {
+         copyObj.quantity = +this.state.userInput
+      } else {
+         return toast.error('Select a Ship')
+      }
+      this.setState({selectedShip: {...copyObj}});
+      this.props.addShip(this.state.selectedShip)
+      this.setState({selectedShip: null,
+      userInput: ''})
+
+   }
+
+   handleChange = (event) => {
+      let shipObj = this.state.listOfShips.find(e => e.id === +event.target.value);
+      this.setState({selectedShip: shipObj})
+   }
 
 
    render(){
+      
       let totalCost = this.props.costTotal.reduce((a, c) => {
          a += c.cost * c.quantity
          return a;
       }, 0)
       let listData = this.state.listOfShips.map((e, i)=> <option key={i} value={e.id}>{e.name}</option>)
-      console.log(listData)
       return (
          <section className='ship-pick-container'>
             <div>
@@ -48,6 +66,7 @@ class PickShips extends Component {
                />
                <GiPirateCannon 
                   size={60}
+                  className='select-button'
                   onClick={this.handleAdd}
                />
             </div>
