@@ -12,7 +12,10 @@ module.exports = {
    editQuantity: (req, res) => {
       const {id} = req.params;
       const {quantity, name} = req.body
+      console.log(name)
+      
       let index = selectedNavy.findIndex(e => e.id === +id);
+      
       selectedNavy[index].name = name;
       selectedNavy[index].quantity = quantity;
       res.status(200).send(selectedNavy)
@@ -25,6 +28,6 @@ module.exports = {
       } else {
          return console.log('Ship not found')
       }
-      res.status(200).send(this.selectedNavy);
+      res.status(200).send(selectedNavy);
    }
 }

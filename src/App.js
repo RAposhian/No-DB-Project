@@ -21,7 +21,8 @@ class App extends Component {
       currentArmy: [],
       rollOut: 'army-box',
       currentNavy: [],
-      toggleDisplay: 'Army'
+      toggleDisplay: 'Army',
+      headerName: 'Make Your Army'
     }
   }
 
@@ -102,21 +103,23 @@ class App extends Component {
   }
 
   toggleDisplayNavy = () => {
-    this.setState({toggleDisplay: 'Navy'})
+    this.setState({toggleDisplay: 'Navy', headerName: 'Make Your Navy'})
+
   }
 
   toggleDisplayArmy = () => {
-    this.setState({toggleDisplay: 'Army'})
+    this.setState({toggleDisplay: 'Army', headerName: 'Make Your Army'})
   }
 
   render() {
-    console.log(this.state.currentNavy)
+    
     return (
       <div className='App'>
         
         <Header 
           displayNavy = {this.toggleDisplayNavy}
           displayArmy = {this.toggleDisplayArmy}
+          headerName = {this.state.headerName}
         />
         <div className='body-container'>
           {
@@ -139,7 +142,7 @@ class App extends Component {
             :
             <>
               <PickShips 
-                costTotal = {this.state.currentNavy}
+                shipTotal = {this.state.currentNavy}
                 addShip={this.addShip}
               />
               <ShipDisplay 

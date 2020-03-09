@@ -3,7 +3,7 @@ import Ship from './Ship'
 
 const ShipDisplay = (props) => {
    return (
-      <div>
+      <div className='navy-container'>
          {
             props.currentNavy.map((e, i) => {
               return ( <Ship 

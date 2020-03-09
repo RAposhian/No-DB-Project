@@ -43,15 +43,15 @@ class PickShips extends Component {
 
 
    render(){
-      
-      let totalCost = this.props.costTotal.reduce((a, c) => {
+      console.log(this.props.shipTotal)
+      let totalCost = this.props.shipTotal.reduce((a, c) => {
          a += c.cost * c.quantity
          return a;
       }, 0)
       let listData = this.state.listOfShips.map((e, i)=> <option key={i} value={e.id}>{e.name}</option>)
       return (
          <section className='ship-pick-container'>
-            <div>
+            <div className='pick-unit-box'>
 
                <h2>Pick a Ship Here:</h2>
                <select onChange={this.handleChange} className='unit-selector'>
