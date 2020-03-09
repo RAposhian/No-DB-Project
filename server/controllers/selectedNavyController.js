@@ -12,10 +12,7 @@ module.exports = {
    editQuantity: (req, res) => {
       const {id} = req.params;
       const {quantity, name} = req.body
-      console.log(name)
-      
       let index = selectedNavy.findIndex(e => e.id === +id);
-      
       selectedNavy[index].name = name;
       selectedNavy[index].quantity = quantity;
       res.status(200).send(selectedNavy)

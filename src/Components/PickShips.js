@@ -43,7 +43,6 @@ class PickShips extends Component {
 
 
    render(){
-      console.log(this.props.shipTotal)
       let totalCost = this.props.shipTotal.reduce((a, c) => {
          a += c.cost * c.quantity
          return a;
