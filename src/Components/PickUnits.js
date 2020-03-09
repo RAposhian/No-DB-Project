@@ -63,7 +63,7 @@ export default class PickUnits extends Component {
                <h2>Pick Units Here:</h2>
               
                <select onChange={this.handleChange} className='unit-selector'>
-                  <option>Select Unit</option>
+                  <option>Select a Unit</option>
                   {listData}
                </select>
                <input 

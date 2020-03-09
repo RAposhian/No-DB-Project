@@ -114,7 +114,9 @@ class App extends Component {
             )
             :
             <>
-              <PickShips />
+              <PickShips 
+                costTotal = {this.state.currentNavy}
+              />
               <ShipDisplay />
             </>
           }

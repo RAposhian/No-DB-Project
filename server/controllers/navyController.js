@@ -52,6 +52,6 @@ navyUnits = [
 
 module.exports = {
    listOfShips: (req, res) => {
-      res.status(200).send(listOfShips)
+      res.status(200).send(navyUnits)
    }
 }
