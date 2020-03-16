@@ -14,6 +14,14 @@ create table army_options(
     image varchar(100)
 );
 
+create table selected_units (
+    id integer primary key,
+    name varchar(100),
+    cost integer,
+    quantity integer,
+    image varchar(100)
+);
+
 
 
 
